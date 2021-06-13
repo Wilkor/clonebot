@@ -1,7 +1,7 @@
 import { create } from 'apisauce';
 
 const api = create({
-  baseURL: 'https://safra.http.msging.net',
+  baseURL: 'https://http.msging.net',
 });
 
 export default api;

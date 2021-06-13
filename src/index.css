@@ -257,7 +257,12 @@ button.clear {
   margin-top: -100px;
 }
 
-
+.container-switch {
+  display:flex;
+  justify-content: space-between;
+  margin-bottom:30px;
+  margin-left:10%;
+}
 
 @-webkit-keyframes shake-rotate {
   0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% {
