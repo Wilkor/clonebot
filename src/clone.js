@@ -20,9 +20,11 @@ import handleSetRules from './services/handleSetRules';
 import Switch from "react-switch";
 import guid from './utils/guid';
 import 'react-notifications/lib/notifications.css';
+import { Link } from "react-router-dom";
 
 
 function Clone(){
+
   
    const [keyOrigin, setKeyOrigin] = useState(localStorage.getItem('keyOne'));
    const [keyTarget, setKeyTarget] = useState(localStorage.getItem('keyTwo'));
@@ -54,19 +56,19 @@ function Clone(){
 
 
     if(!keyOrigin && !keyTarget){
-      showMessage('Faltam dados. Por favor, verifique as Keys origem e destino!','warning', 'aviso!');
+      showMessage('Data is missing. Please check the Source and Destination Keys!!','warning', 'Notice!');
       return false;
     
     }
       
     if (!keyOrigin.includes('Key') || !keyTarget.includes('Key') ) {
-      showMessage('key digitada, não é um key válida', 'warning', 'aviso!');
+      showMessage('key typed, is not a valid key!', 'warning', 'Notice!');
       return false;
     } 
 
     if (!checkedBuilder && !checkedRules && !checkedResource ) {
  
-      showMessage('Escolha um item para ser clonado!','warning', 'Atenção!')
+      showMessage('Choose an option to clone!','warning', 'Notice!')
       return false;
     }
   
@@ -98,13 +100,13 @@ function Clone(){
        
     if (comeBckHandleGetGlobaisPublished.status === 200) {
       
-      showMessage('Bot clonado com sucesso','success','Concluido!')
+      showMessage('Bot cloned successfully','success','Done!')
       setKeyOrigin('');
       setKeyTarget('');
       setCheckedBuilder(false)
    
     } else {
-      showMessage('Erro ao clonar o bot','error','Error!')
+      showMessage('Error cloning bot','error','Error!')
     }
  }
 
@@ -122,13 +124,13 @@ function Clone(){
          
       });
 
-        showMessage('Recursos Clonados com Sucesso','success', 'Concluido!');
+        showMessage('Successfully Cloned Resources','success', 'Done!');
         setCheckedResource(false)
   
 
     } else {
     
-        showMessage('Não existem recursos para clonar','warning', 'Atenção!');
+        showMessage('There are no resources to clone','warning', 'Notice!');
   
     }
   }
@@ -144,12 +146,12 @@ function Clone(){
          await handleSetRules(guid(), rulesItems, keyTarget)
 
      })
-        showMessage('Regras clonadas com sucesso','success', 'Concluido!');
+        showMessage('Successfully cloned rules','success', 'Done!');
     
         setCheckedRules(false)
 
     } else {
-        showMessage('Não existem regras para clonar','warning', 'Atenção!');
+        showMessage('There are no rules for cloning','warning', 'Notice!');
     }
     
   }
@@ -191,12 +193,19 @@ function showMessage(msg, type, status) {
   }
 
 
+    // const loader = (
+    //   <div className="clone">
+    //    <div className="element element-1"></div>
+    //    <div className="element element-2"></div><br />
+    //     <p style={{fontSize:'14px', color:'white'}}>
+    //       Aguarde enquanto estamos clonando seu bot ...</p>
+    //   </div>
+    // )
     const loader = (
-      <div className="clone">
-       <div className="element element-1"></div>
-       <div className="element element-2"></div><br />
-        <p style={{fontSize:'14px', color:'white'}}>
-          Aguarde enquanto estamos clonando seu bot ...</p>
+      <div className="load">
+        <div id="space-loader"></div>
+        <div id="loader"></div><br />
+        <p style={{fontSize:'14px', color:'white'}}>Aguarde enquanto estamos clonando seu bot...</p>
       </div>
     )
     const page = (
@@ -206,19 +215,19 @@ function showMessage(msg, type, status) {
           <div className="">
             <form className="">
               <div className="form-group">
-                <h2 style={{marginTop:'0px', marginBottom:'30px', textAlign:'center'}}><img src="../../assets/logo.png" 
-                style={{fontSize:'60px', marginBottom:'10px', width:'20%'}} alt="logo"/><br />CloneBots</h2>
+                <h2 style={{marginTop:'0px', marginBottom:'5px', textAlign:'center'}}><img src="../../assets/logo.png" 
+                style={{fontSize:'60px', marginBottom:'5px', width:'20%'}} alt="logo"/><br />CloneBots</h2>
 
                 <input  value={keyOrigin} 
                 onChange={(event) => setLocaStorageKey1(event.target.value)} 
                 type="text" name="origem" className=""   
-                placeholder="Digite a key do bot origem." required />
+                placeholder="Enter the source bot key." required />
               </div>
               <div className="form-group">
                 <input  value={keyTarget} 
                 onChange={(event) => setLocaStorageKey2(event.target.value)} 
                 type="text" name="destion" className="" 
-                placeholder="Digite a key do bot destino." required />
+                placeholder="Enter the key of the target bot." required />
                 
               </div>
 
@@ -240,10 +249,16 @@ function showMessage(msg, type, status) {
         <Switch onChange={handleChangeRules}
           checked={checkedRules}  />
        </label>
+  
        </div>
+       
              <div className="text-center">
-              <button type="submit" onClick={start} style={{marginRight:"10px"}} className="">Clonar Bot</button>
-              <button type="button" onClick={clear} style={{marginRight:"10px"}} className="clear">limpar</button>
+              <button type="submit" onClick={start} style={{marginRight:"10px"}} className="">Clone Bot</button>
+              <button type="button" onClick={clear} style={{marginRight:"10px"}} className="clear">Clear</button>
+              
+              <Link to="/marketplace" className="clear"><button  style={{marginRight:"10px"}} className="">Marketplace</button></Link>
+              
+              
              </div>
             </form>
           </div>

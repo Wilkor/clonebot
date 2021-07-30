@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Clone from './clone'
+import MarketPlace from './marketplace'
+import Donate from './donate'
 
 function App() {
 
@@ -25,8 +27,10 @@ function App() {
       </div>
     )
     const children = (
-      <div style={{width:'400px', height:'400px'}}>
+      <div style={{width:'520px', height:'520px'}}>
         <Switch>
+            <Route path="/marketplace" component={(MarketPlace)} />
+            <Route path="/donate" component={(Donate)} />
             <Route path="/" component={(Clone)} />
         </Switch>
       </div>

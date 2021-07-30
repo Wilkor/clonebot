@@ -138,7 +138,9 @@ header nav ul li p {
   animation: spin 2s linear infinite;
   margin: 0 auto !important;
   float: none !important;
+  margin-left: '50%'
 }
+
 
 #space-loader {
   height: 20%;
@@ -147,9 +149,10 @@ header nav ul li p {
 .load {
   text-align: center;
   font-size: 30px;
-  width:400px;
+  width:520px;
   height: 400px;
-  padding:'30px'
+  padding:'30px';
+  margin-left:'20%'
 }
 
 @keyframes spin {
@@ -350,4 +353,35 @@ button.clear {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+}
+
+.MuiButton-label{
+
+background:white;
+color:black;
+
+}
+
+
+
+
+.container-switch {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  margin-left: 0%;
+}
+
+.MuiTypography-displayBlock {
+  display: block;
+}
+
+
+.avatar {
+  vertical-align: middle;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
 }
